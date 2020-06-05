@@ -4,6 +4,7 @@ import AddPayment from '../containers/AddPayment';
 import PaymentListContainer from '../containers/PaymentListContainer';
 import UserListContainer from '../containers/UserListContainer';
 import AddUser from '../containers/AddUser';
+import PayUpList from '../containers/PayUpList';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <PaymentListContainer/>
         <AddUser/>
         <UserListContainer/>
+        <PayUpList/>
     </div>
   );
 }
