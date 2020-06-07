@@ -54,12 +54,12 @@ class AddPayment extends React.Component {
      */
     handleAddPayment = () => {
         if (!this.state.amountInput.trim()
-            || isNaN(parseInt(this.state.amountInput))) {
+            || isNaN(parseFloat(this.state.amountInput))) {
             this.setState({ isValidAmountInput: false });
             return;
         }
         this.props.addPayment(
-            parseInt(this.state.amountInput),
+            parseFloat(this.state.amountInput).toFixed(2),
             this.state.userInput,
             this.state.splitBetweenUsers
         );

@@ -14,7 +14,7 @@ class PayUpList extends React.Component {
                 <h2>PAY UP BITCHES</h2>
                 <div>
                     {this.props.payUps.map(payUp => (
-                        <div key={payUp.fromUser + payUp.toUser}>{payUp.fromUser} pays {payUp.amount} to {payUp.toUser}</div>
+                        <div key={payUp.id}>{payUp.fromUser} pays {payUp.amount} to {payUp.toUser}</div>
                     ))}
                 </div>
             </div>
@@ -36,9 +36,9 @@ const calculatePayUps = (payments, users) => {
         }
     });
 
-    let balancedPaymentAmount = userPaymentTotals
+    let balancedPaymentAmount = (userPaymentTotals
         .map(x => x.total)
-        .reduce((a, b) => a + b, 0) / users.length;
+        .reduce((a, b) => a + b, 0) / users.length).toFixed(2);
 
     let userIdx = 0;
     let amountsOwedPerUser = userPaymentTotals
@@ -67,16 +67,27 @@ const calculatePayUps = (payments, users) => {
             return owedPerUser.reduce((prev, current) => (prev.owes < current.owes) ? prev : current);
     }
     let payUps = [];
+    let payUpId = 0;
     while (amountsOwedPerUser.filter(userOwes => userOwes.owes < 0).length > 0) {
-        let largestOwes = getLargestOwes(amountsOwedPerUser);
-        let largestOwed = getLargestOwed(amountsOwedPerUser);
+        const largestOwes = getLargestOwes(amountsOwedPerUser);
+        const largestOwed = getLargestOwed(amountsOwedPerUser);
+        const oweDiff = Math.abs(amountsOwedPerUser[largestOwed.idx].owes);
+        amountsOwedPerUser[largestOwed.idx] = {
+            user: amountsOwedPerUser[largestOwed.idx].user,
+            owes: amountsOwedPerUser[largestOwed.idx].owes + oweDiff,
+            idx: amountsOwedPerUser[largestOwed.idx].idx
+        }
+        amountsOwedPerUser[largestOwes.idx] = {
+            user: amountsOwedPerUser[largestOwes.idx].user,
+            owes: amountsOwedPerUser[largestOwes.idx].owes - oweDiff,
+            idx: amountsOwedPerUser[largestOwes.idx].idx
+        }
         payUps.push({
             fromUser: largestOwes.user,
             toUser: largestOwed.user,
-            amount: largestOwes.owes
+            amount: oweDiff.toFixed(2),
+            id: payUpId++
         });
-        amountsOwedPerUser[largestOwed.idx].owes += amountsOwedPerUser[largestOwes.idx].owes;
-        console.log(amountsOwedPerUser);
     }
     return payUps;
 }
