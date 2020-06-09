@@ -21,3 +21,9 @@ export const removeUser = (userName) => ({
     type: 'REMOVE_USER',
     userName
 });
+
+export const calculatePayups = (payments, users) => ({
+    type: 'CALCULATE_PAYUPS',
+    payments,
+    users
+})

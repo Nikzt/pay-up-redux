@@ -59,7 +59,7 @@ class AddPayment extends React.Component {
             return;
         }
         this.props.addPayment(
-            parseFloat(this.state.amountInput).toFixed(2),
+            Math.round((parseFloat(this.state.amountInput) + Number.EPSILON) * 100) / 100,
             this.state.userInput,
             this.state.splitBetweenUsers
         );
