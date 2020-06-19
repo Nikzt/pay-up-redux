@@ -1,0 +1,38 @@
+.App {
+    padding: 20px;
+}
+
+.App .section {
+    border: 10px solid;
+    border-radius: 6px;
+}
+
+.App .section h2 {
+    font-size: 1.2em;
+    opacity: 0.7;
+}
+
+.App .section + * {
+    margin-top: 1.5em;
+}
+
+.App .user-section {
+    width: 500px;
+    padding: 10px;
+    background-color: #c0d8e3;
+    border-color: #c0d8e3;
+}
+
+.App .pay-up-section {
+    width: 500px;
+    padding: 10px;
+    background-color: #eeb9a2;
+    border-color: #eeb9a2;
+}
+
+.App .payment-section {
+    width: 500px;
+    padding: 10px;
+    background-color: #e18a7a;
+    border-color: #e18a7a;
+}

@@ -10,12 +10,19 @@ import PayUpCalculator from '../containers/PayUpCalculator';
 function App() {
   return (
     <div className="App">
-        <AddPayment/>
-        <PaymentListContainer/>
-        <AddUser/>
-        <UserListContainer/>
-        <PayUpCalculator/>
-        <PayUpList/>
+        <div className="user-section section">
+          <h2>Users</h2>
+          <AddUser/>
+          <UserListContainer/>
+        </div>
+        <div className="payment-section section">
+          <AddPayment/>
+          <PaymentListContainer/>
+        </div>
+        <div className="pay-up-section section">
+          <PayUpCalculator/>
+          <PayUpList/>
+        </div>
     </div>
   );
 }

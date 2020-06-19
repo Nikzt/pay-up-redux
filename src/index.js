@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './components/App';
+import './style/reset.css';
+import './style/colors.css';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './reducers';
 import {Provider} from 'react-redux';
