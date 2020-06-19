@@ -1,0 +1,3 @@
+- [ ] Only show payment section when there are at least 2 users.
+- [ ] Only show pay up section when there is at least one payment.
+- [ ] Make each section slide out of the previous one, like cards.
